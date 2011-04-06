@@ -1,0 +1,24 @@
+h1. KeepRunning
+
+bq. You can run but you can't hide.
+
+KeepRunning takes a super simple configure file as argument: @keep_running example_runner@. All other arguments will be passed to the script to be run.
+
+The runner config looks like this:
+
+<pre><code>KeepRunning.run do
+  pidfile             '/tmp/keep_running_example'
+  email               to: 'keep_running_test@trash-mail.com', from: 'keep_running_test@trash-mail.com', via: :sendmail
+  restart_threshold   6
+  restart_delay       60
+  
+  process 'example_script.rb'
+end
+</code></pre>
+
+@restart_threshold@ defines how many seconds must be between restarts until a delay of @restart_delay@ seconds is kicking in.
+
+h2. Caveats
+
+This is a quick and dirty hack. Specs will follow soon.
+
