@@ -3,14 +3,21 @@ require 'pony'
 
 class KeepRunning
   class << self
-    attr_accessor :runner_location
-    
     def load_runner(runner)
       load @runner_location = runner
     end
     
+    def runner_location
+      @runner_location ||= File.expand_path($0)
+    end
+    
+    def process_argv
+      ARGV.shift if File.basename($0) == 'keep_running'
+    end
+    
     def run(&block)
       runner = new
+      process_argv
       runner.instance_eval &block
       runner.run
     end
@@ -26,7 +33,6 @@ class KeepRunning
   
   def run
     write_pidfile
-    ARGV.shift
     
     output = nil
     loop do

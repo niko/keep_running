@@ -2,9 +2,21 @@ h1. KeepRunning
 
 bq. You can run but you can't hide.
 
-KeepRunning takes a super simple configure file as argument: @keep_running example_runner@. All other arguments will be passed to the script to be run.
+KeepRunning restarts a Ruby script whenever it stops, crashes or is killed.
 
-The runner config looks like this:
+There's two modes to use KeepRunning: Using the @keep_running@ bin with a config file (see example_runner_conf) or using a KeepRunning script (see example_runner_script). The only difference is a shebang line and a require line in the KeepRunning script. (Actually the script could as well being used as configuration file; This isn't true the other way round)
+
+The invokation would look like this:
+
+<pre><code>keep_running example_runner_conf one two three</code></pre>
+<pre><code>./example_runner_script one two three</code></pre>
+
+All further arguments will be passed to the process to be run. For the process running $0 will be it's own path. So basically if your Ruby script works on it's own, it's scriptname @$0@ and command line arguments @ARGV@ will be the same when launched by KeepRunning.
+
+
+h2. Synopsis
+
+A runner config would look like this:
 
 <pre><code>KeepRunning.run do
   pidfile             '/tmp/keep_running_example'
