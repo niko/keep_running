@@ -65,8 +65,13 @@ class KeepRunning
     end
     
     def write_pidfile
+      puts "wrote PID-file #{@pidfile}"
       File.open(@pidfile, 'w'){|file| file << Process.pid }
-      at_exit{ FileUtils.rm @pidfile rescue nil }
+      at_exit{
+        if File.new(@pidfile, "r").gets.to_i == Process.pid
+          FileUtils.rm @pidfile rescue nil
+        end
+      }
     end
     
     def spawn
@@ -78,7 +83,7 @@ class KeepRunning
         yield                                       # YIELD the given block
       }
       writeme.close                                 # close the child end of the pipe in the parent
-      puts "forked as PID #{pid}"
+      puts "forked child as PID #{pid}"
       
       add_exit_hook pid
       

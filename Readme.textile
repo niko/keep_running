@@ -11,7 +11,7 @@ The invokation would look like this:
 <pre><code>keep_running example_runner_conf one two three</code></pre>
 <pre><code>./example_runner_script one two three</code></pre>
 
-All further arguments will be passed to the process to be run. For the process running $0 will be it's own path. So basically if your Ruby script works on it's own, it's scriptname @$0@ and command line arguments @ARGV@ will be the same when launched by KeepRunning.
+All further arguments will be passed to the process to be run. For the process running @$0@ will be it's own path. So basically if your Ruby script works on it's own, it's scriptname @$0@ and command line arguments @ARGV@ will be the same when launched by KeepRunning.
 
 
 h2. Synopsis
