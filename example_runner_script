@@ -3,7 +3,7 @@ require 'keep_running'
 
 KeepRunning.run do
   pidfile             '/tmp/keep_running_example'
-  email               to: 'keep_running_test@trash-mail.com', from: 'keep_running_test@trash-mail.com', via: :sendmail
+  email               to: 'keep_running_test@mailinator.com', from: 'keep_running_test@mailinator.com', via: :sendmail
   restart_threshold   6
   restart_delay       60
   

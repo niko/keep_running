@@ -10,4 +10,4 @@ puts
 
 sleep 10
 puts "ended at #{Time.now}"
-puts "Go to http://trashmail.com to see the email."
+puts "Go to http://www.mailinator.com/maildir.jsp?email=keep_running_test to see the email."
