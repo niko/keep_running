@@ -87,11 +87,15 @@ class KeepRunning
       
       add_exit_hook pid
       
-      output = ''
-      readme.each{ |line| puts line ; output << line }  # collect the childs stdout
+      output = []
+      readme.each{ |line|
+        output = output[-1000,1000] || [] # truncate the output array
+        puts line
+        output << line            # collect the childs stdout
+      }
       
       Process.waitpid pid, 0                        # wait for the child to exit
-      return output
+      return output.join
     end
     
     def throttle_restart
